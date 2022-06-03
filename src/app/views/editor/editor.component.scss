@@ -1,0 +1,39 @@
+@use 'src/assets/css/variables' as *;
+
+div.editor-container {
+    background-color: $EditorBackgroundColor;
+    height: $EditorHeight;
+    position: relative;
+
+    textarea {
+        z-index: 1;
+        color: transparent;
+        background: transparent;
+        caret-color: white;
+        position: relative;
+        resize: none;
+    }
+
+    pre {
+        z-index: 0;
+        background-color: $EditorBackgroundColor;
+        position: absolute;
+        top: 0;
+        left: 0;
+        overflow: auto;
+        color: deeppink;
+    }
+
+    textarea, pre {
+        margin: 0;
+        padding: 1rem;
+        border: 0;
+        width: 100%;
+        height: $EditorHeight;
+
+        &, code {
+            @include editor-font-size;
+            overflow: auto;
+        }
+    }
+}

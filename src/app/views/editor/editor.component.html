@@ -1,0 +1,5 @@
+<div class="editor-container editor-html">
+    <textarea spellcheck="false" (input)="onTextareaInput(textarea, highlightContent)" (scroll)="onScroll(textarea)" #textarea></textarea>
+
+    <pre aria-hidden="true" [scrollTop]="scrollTop" [scrollLeft]="scrollLeft"><code class="language-{{language}}" id="highlighting-content" #highlightContent></code></pre>
+</div>

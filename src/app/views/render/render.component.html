@@ -1,0 +1,4 @@
+<div #iframeContainer class="iframe-container">
+    <iframe #iframe height="{{iframeContainer.offsetHeight}}" width="{{iframeContainer.offsetWidth}}" (load)="onLoad(iframe, iframeContainer)" srcdoc=""></iframe>
+</div>
+<span>Height: {{iframeContainerHeight}} / Width: {{iframeContainerWidth}}</span>

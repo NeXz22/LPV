@@ -1,0 +1,7 @@
+<div>
+    <app-render [tabChangeSubject]="tabChangeSubject" [htmlCode]="htmlCodeSubject" [cssCode]="cssCodeSubject"></app-render>
+</div>
+<div>
+    <app-editor (editorInputChange)="htmlEditorInputChange($event)" label="HTML" language="html"></app-editor>
+    <app-editor (editorInputChange)="cssEditorInputChange($event)" label="CSS" language="css"></app-editor>
+</div>

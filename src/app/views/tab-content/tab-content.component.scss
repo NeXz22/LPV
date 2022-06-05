@@ -1,0 +1,12 @@
+:host {
+    width: 100%;
+    display: flex;
+
+    &.hide {
+        display: none;
+    }
+
+    div {
+        flex: 1 1 50%;
+    }
+}

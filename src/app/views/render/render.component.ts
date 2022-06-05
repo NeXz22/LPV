@@ -10,12 +10,14 @@ export class RenderComponent implements OnInit, OnDestroy {
 
     @Input() htmlCode: Subject<string>;
     @Input() cssCode: Subject<string>;
+    @Input() tabChangeSubject = new Subject();
 
     destroyNotifier = new Subject<any>();
     iframe: HTMLIFrameElement = null;
     iframeContainer: HTMLDivElement = null;
     iframeContainerHeight: number;
     iframeContainerWidth: number;
+    renderInitialised = false;
 
     private initialIframeContainerHeight = 0;
     private initialIframeContainerWidth = 0;
@@ -49,18 +51,29 @@ export class RenderComponent implements OnInit, OnDestroy {
             });
 
         this.resizeObserver = new ResizeObserver((div) => {
+            console.log('resizeObserver');
             this.zone.run(() => {
-                if (!this.iframeContainerHeight && !this.iframeContainerWidth) {
+                if (!this.renderInitialised) {
                     this.initialIframeContainerHeight = div[0].contentRect.height;
                     this.initialIframeContainerWidth = div[0].contentRect.width;
+                    this.renderInitialised = true;
                 }
                 this.iframeContainerHeight = div[0].contentRect.height;
                 this.iframeContainerWidth = div[0].contentRect.width;
             });
         });
+
+        this.tabChangeSubject
+            .pipe(takeUntil(this.destroyNotifier))
+            .subscribe({
+                next: () => this.onResetRenderSize(),
+            })
     }
 
     onLoad(iframe: HTMLIFrameElement, iframeContainer: HTMLDivElement): void {
+        console.log('onload');
+        console.log(this.iframeContainerHeight);
+        console.log(this.initialIframeContainerHeight);
         this.iframe = iframe;
         if (!this.iframeContainer) {
             this.iframeContainer = iframeContainer;
@@ -70,8 +83,10 @@ export class RenderComponent implements OnInit, OnDestroy {
     }
 
     onResetRenderSize(): void {
-        this.iframeContainerHeight = this.initialIframeContainerHeight;
-        this.iframeContainerWidth = this.initialIframeContainerWidth;
+        if (this.renderInitialised) {
+            this.iframeContainerHeight = this.initialIframeContainerHeight;
+            this.iframeContainerWidth = this.initialIframeContainerWidth;
+        }
     }
 
     private render(htmlCode, cssCode): void {

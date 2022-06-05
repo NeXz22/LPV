@@ -3,5 +3,5 @@
     <div #iframeContainer class="iframe-container" [style.height.px]="iframeContainerHeight" [style.width.px]="iframeContainerWidth">
         <iframe #iframe height="{{iframeContainer.offsetHeight}}" width="{{iframeContainer.offsetWidth}}" (load)="onLoad(iframe, iframeContainer)" srcdoc=""></iframe>
     </div>
-    <span>Height: {{iframeContainerHeight}} / Width: {{iframeContainerWidth}}</span><button (click)="onResetRenderSize()">Reset</button>
+    <span>{{iframeContainerHeight}} / {{iframeContainerWidth}}</span><button (click)="onResetRenderSize()">Reset</button>
 </div>

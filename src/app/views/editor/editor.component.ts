@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 import hljs from 'highlight.js';
 
 @Component({
@@ -6,27 +6,20 @@ import hljs from 'highlight.js';
     templateUrl: './editor.component.html',
     styleUrls: ['./editor.component.scss']
 })
-export class EditorComponent implements OnInit {
+export class EditorComponent {
 
-    @Output()
-    editorInputChange: EventEmitter<string> = new EventEmitter<string>();
+    @Output() editorInputChange: EventEmitter<string> = new EventEmitter<string>();
+    @Input() language: string;
+    @Input() label: string;
 
-    @Input()
-    language;
     scrollTop = 0;
     scrollLeft = 0;
-
-    constructor() {
-    }
-
-    ngOnInit(): void {
-    }
 
     onTextareaInput(textarea: HTMLTextAreaElement, highlightContent: HTMLElement): void {
         let code = textarea.value;
 
-        if (code[code.length - 1] == "\n") { // If the last character is a newline character
-            code += " "; // Add a placeholder space character to the final line
+        if (code[code.length - 1] === "\n") {
+            code += " ";
         }
 
         highlightContent.textContent = code;
@@ -35,7 +28,6 @@ export class EditorComponent implements OnInit {
     }
 
     onScroll(textarea: HTMLTextAreaElement): void {
-        console.log('onScroll');
         this.scrollTop = textarea.scrollTop;
         this.scrollLeft = textarea.scrollLeft;
     }

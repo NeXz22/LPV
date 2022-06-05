@@ -1,16 +1,18 @@
-/* **************************************
-Render
-************************************** */
-$InitialIframeHeight: 600px;
-$InitialIframeWidth: 100%;
-$IframeBoxShadow: 0 0 15px 5px rgba(0, 0, 0, 0.25);
-$IframeSizeText: 0.8rem;
+$padding: 1rem;
 
 /* **************************************
 Editor
 ************************************** */
 $EditorBackgroundColor: rgb(40, 44, 52);
 $EditorHeight: 300px;
+
+/* **************************************
+Render
+************************************** */
+$InitialIframeHeight: 650px;
+$InitialIframeWidth: 100%;
+$IframeBoxShadow: 0 0 15px 5px rgba(0, 0, 0, 0.25);
+$IframeSizeText: 0.8rem;
 
 @mixin editor-font-size {
     font-size: 12pt;

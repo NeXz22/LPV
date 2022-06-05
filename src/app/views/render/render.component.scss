@@ -1,32 +1,38 @@
 @use 'src/assets/css/variables' as *;
 
 :host {
-    position: absolute;
-    width: 100%;
-    z-index: 999;
+    position: relative;
+    display: block;
 
-    .iframe-container {
-        width: $InitialIframeWidth;
-        height: $InitialIframeHeight;
-        background-color: white;
-        resize: both;
-        overflow: auto;
-        position: relative;
-        box-shadow: $IframeBoxShadow;
+    .render-container {
+        position: absolute;
+        width: 100%;
+        z-index: 999;
+        padding: $padding;
 
-        iframe {
-            border: none;
-            overflow: hidden;
-            height: 98%;
-            width: 100%;
+        .iframe-container {
+            width: $InitialIframeWidth;
+            height: $InitialIframeHeight;
+            background-color: white;
+            resize: both;
+            overflow: auto;
+            position: relative;
+            box-shadow: $IframeBoxShadow;
+
+            iframe {
+                border: none;
+                overflow: hidden;
+                height: 98%;
+                width: 100%;
+            }
+
         }
 
-    }
-
-    span {
-        margin: 1rem 0 0 0;
-        display: block;
-        font-size: $IframeSizeText;
-        font-variant-numeric: tabular-nums;
+        span {
+            margin: 1rem 0 0 0;
+            display: block;
+            font-size: $IframeSizeText;
+            font-variant-numeric: tabular-nums;
+        }
     }
 }

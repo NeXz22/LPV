@@ -50,7 +50,7 @@ export class RenderComponent implements OnInit, OnDestroy {
 
         this.resizeObserver = new ResizeObserver((div) => {
             this.zone.run(() => {
-                if (!this.iframeContainerHeight || !this.iframeContainerWidth) {
+                if (!this.iframeContainerHeight && !this.iframeContainerWidth) {
                     this.initialIframeContainerHeight = div[0].contentRect.height;
                     this.initialIframeContainerWidth = div[0].contentRect.width;
                 }

@@ -1,9 +1,7 @@
-<div class="position-relative">
+<div>
     <app-render [htmlCode]="htmlCodeSubject" [cssCode]="cssCodeSubject"></app-render>
 </div>
 <div>
-    <label>HTML</label>
-    <app-editor (editorInputChange)="htmlEditorInputChange($event)" language="html"></app-editor>
-    <label>CSS</label>
-    <app-editor (editorInputChange)="cssEditorInputChange($event)" language="css"></app-editor>
+    <app-editor (editorInputChange)="htmlEditorInputChange($event)" label="HTML" language="html"></app-editor>
+    <app-editor (editorInputChange)="cssEditorInputChange($event)" label="CSS" language="css"></app-editor>
 </div>

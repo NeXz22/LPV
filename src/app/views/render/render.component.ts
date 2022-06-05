@@ -8,23 +8,21 @@ import {Subject, takeUntil} from 'rxjs';
 })
 export class RenderComponent implements OnInit, OnDestroy {
 
-    @Input()
-    htmlCode: Subject<string>;
-
-    @Input()
-    cssCode: Subject<string>;
+    @Input() htmlCode: Subject<string>;
+    @Input() cssCode: Subject<string>;
 
     destroyNotifier = new Subject<any>();
     iframe: HTMLIFrameElement = null;
     iframeContainer: HTMLDivElement = null;
-    latestHtmlCode = '';
-    latestCssCode = '';
-    iframeContainerHeight = 0;
-    iframeContainerWidth = 0;
+    iframeContainerHeight: number;
+    iframeContainerWidth: number;
 
-    baseStyles = '* {box-sizing: border-box;}\n' +
-        'html, body {overflow: hidden; margin: 0; padding: 0; width: 100%;}\n';
+    private initialIframeContainerHeight = 0;
+    private initialIframeContainerWidth = 0;
+    private latestHtmlCode = '';
+    private latestCssCode = '';
     private resizeObserver: ResizeObserver;
+    private baseStyles = '* {box-sizing: border-box;} html, body {overflow: hidden; margin: 0; padding: 0; width: 100%;}';
 
     constructor(
         private zone: NgZone
@@ -52,6 +50,10 @@ export class RenderComponent implements OnInit, OnDestroy {
 
         this.resizeObserver = new ResizeObserver((div) => {
             this.zone.run(() => {
+                if (!this.iframeContainerHeight || !this.iframeContainerWidth) {
+                    this.initialIframeContainerHeight = div[0].contentRect.height;
+                    this.initialIframeContainerWidth = div[0].contentRect.width;
+                }
                 this.iframeContainerHeight = div[0].contentRect.height;
                 this.iframeContainerWidth = div[0].contentRect.width;
             });
@@ -65,6 +67,11 @@ export class RenderComponent implements OnInit, OnDestroy {
             this.resizeObserver.observe(this.iframeContainer);
         }
         this.render(this.latestHtmlCode, this.latestCssCode);
+    }
+
+    onResetRenderSize(): void {
+        this.iframeContainerHeight = this.initialIframeContainerHeight;
+        this.iframeContainerWidth = this.initialIframeContainerWidth;
     }
 
     private render(htmlCode, cssCode): void {

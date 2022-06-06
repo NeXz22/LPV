@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {AfterViewInit, Component, Input, OnInit} from '@angular/core';
 import {Subject} from 'rxjs';
 
 @Component({
@@ -6,9 +6,10 @@ import {Subject} from 'rxjs';
     templateUrl: './tab-content.component.html',
     styleUrls: ['./tab-content.component.scss']
 })
-export class TabContentComponent implements OnInit {
+export class TabContentComponent implements OnInit, AfterViewInit {
 
     @Input() tabChangeSubject = new Subject();
+    @Input() tabJSON;
 
     htmlCodeSubject = new Subject<string>();
     cssCodeSubject = new Subject<string>();
@@ -25,5 +26,10 @@ export class TabContentComponent implements OnInit {
 
     cssEditorInputChange(cssCode: string): void {
         this.cssCodeSubject.next(cssCode);
+    }
+
+    ngAfterViewInit(): void {
+        this.htmlCodeSubject.next(this.tabJSON.html);
+        this.cssCodeSubject.next(this.tabJSON.css);
     }
 }

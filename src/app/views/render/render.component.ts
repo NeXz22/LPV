@@ -1,4 +1,14 @@
-import {Component, Input, NgZone, OnDestroy, OnInit} from '@angular/core';
+import {
+    AfterViewInit,
+    Component,
+    ElementRef,
+    Input,
+    NgZone,
+    OnDestroy,
+    OnInit,
+    Renderer2,
+    ViewChild
+} from '@angular/core';
 import {Subject, takeUntil} from 'rxjs';
 
 @Component({
@@ -6,28 +16,29 @@ import {Subject, takeUntil} from 'rxjs';
     templateUrl: './render.component.html',
     styleUrls: ['./render.component.scss']
 })
-export class RenderComponent implements OnInit, OnDestroy {
+export class RenderComponent implements OnInit, AfterViewInit, OnDestroy {
+
+    @ViewChild('iframe') iframe: ElementRef<HTMLIFrameElement>;
+    @ViewChild('iframeContainer', {static: true}) iframeContainerRef: ElementRef<HTMLDivElement>;
 
     @Input() htmlCode: Subject<string>;
     @Input() cssCode: Subject<string>;
     @Input() tabChangeSubject = new Subject();
 
     destroyNotifier = new Subject<any>();
-    iframe: HTMLIFrameElement = null;
-    iframeContainer: HTMLDivElement = null;
     iframeContainerHeight: number;
     iframeContainerWidth: number;
-    renderInitialised = false;
+    initialIframeContainerHeight = 0;
+    initialIframeContainerWidth = 0;
 
-    private initialIframeContainerHeight = 0;
-    private initialIframeContainerWidth = 0;
     private latestHtmlCode = '';
     private latestCssCode = '';
     private resizeObserver: ResizeObserver;
     private baseStyles = '* {box-sizing: border-box;} html, body {overflow: hidden; margin: 0; padding: 0; width: 100%;}';
 
     constructor(
-        private zone: NgZone
+        private zone: NgZone,
+        private renderer: Renderer2
     ) {
     }
 
@@ -50,19 +61,6 @@ export class RenderComponent implements OnInit, OnDestroy {
                 },
             });
 
-        this.resizeObserver = new ResizeObserver((div) => {
-            console.log('resizeObserver');
-            this.zone.run(() => {
-                if (!this.renderInitialised) {
-                    this.initialIframeContainerHeight = div[0].contentRect.height;
-                    this.initialIframeContainerWidth = div[0].contentRect.width;
-                    this.renderInitialised = true;
-                }
-                this.iframeContainerHeight = div[0].contentRect.height;
-                this.iframeContainerWidth = div[0].contentRect.width;
-            });
-        });
-
         this.tabChangeSubject
             .pipe(takeUntil(this.destroyNotifier))
             .subscribe({
@@ -70,37 +68,45 @@ export class RenderComponent implements OnInit, OnDestroy {
             })
     }
 
-    onLoad(iframe: HTMLIFrameElement, iframeContainer: HTMLDivElement): void {
-        console.log('onload');
-        console.log(this.iframeContainerHeight);
-        console.log(this.initialIframeContainerHeight);
-        this.iframe = iframe;
-        if (!this.iframeContainer) {
-            this.iframeContainer = iframeContainer;
-            this.resizeObserver.observe(this.iframeContainer);
-        }
+    ngAfterViewInit(): void {
+        this.initialIframeContainerHeight = this.iframeContainerRef.nativeElement.offsetHeight;
+        this.initialIframeContainerWidth = this.iframeContainerRef.nativeElement.offsetWidth;
+
+        this.resizeObserver = new ResizeObserver((div) => {
+            this.zone.run(() => {
+                if (!this.initialIframeContainerHeight || !this.initialIframeContainerWidth) {
+                    this.initialIframeContainerHeight = div[0].contentRect.height;
+                    this.initialIframeContainerWidth = div[0].contentRect.width;
+                }
+            });
+        });
+
+        this.resizeObserver.observe(this.iframeContainerRef.nativeElement);
+    }
+
+    onLoad(): void {
         this.render(this.latestHtmlCode, this.latestCssCode);
     }
 
     onResetRenderSize(): void {
-        if (this.renderInitialised) {
-            this.iframeContainerHeight = this.initialIframeContainerHeight;
-            this.iframeContainerWidth = this.initialIframeContainerWidth;
+        if (this.initialIframeContainerHeight && this.initialIframeContainerWidth) {
+            this.renderer.setStyle(this.iframeContainerRef.nativeElement, 'height', this.initialIframeContainerHeight + 'px');
+            this.renderer.setStyle(this.iframeContainerRef.nativeElement, 'width', this.initialIframeContainerWidth + 'px');
         }
     }
 
     private render(htmlCode, cssCode): void {
-        this.iframe.contentWindow.document.open();
-        this.iframe.contentWindow.document.write(htmlCode);
-        this.iframe.contentWindow.document.close();
+        this.iframe.nativeElement.contentWindow.document.open();
+        this.iframe.nativeElement.contentWindow.document.write(htmlCode);
+        this.iframe.nativeElement.contentWindow.document.close();
 
         const styles = document.createElement("style");
         styles.textContent = (this.baseStyles + cssCode);
-        this.iframe.contentDocument.head.appendChild(styles);
+        this.iframe.nativeElement.contentDocument.head.appendChild(styles);
     }
 
     ngOnDestroy(): void {
-        this.resizeObserver.unobserve(this.iframeContainer);
+        this.resizeObserver.unobserve(this.iframeContainerRef.nativeElement);
         this.destroyNotifier.next(null);
         this.destroyNotifier.complete();
     }

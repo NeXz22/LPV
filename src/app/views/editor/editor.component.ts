@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, Output} from '@angular/core';
+import {AfterViewInit, Component, ElementRef, EventEmitter, Input, Output, ViewChild} from '@angular/core';
 import hljs from 'highlight.js';
 
 @Component({
@@ -6,14 +6,24 @@ import hljs from 'highlight.js';
     templateUrl: './editor.component.html',
     styleUrls: ['./editor.component.scss']
 })
-export class EditorComponent {
+export class EditorComponent implements AfterViewInit {
+
+    @ViewChild('highlightContent', {static: true}) highlightContent: ElementRef<HTMLElement>;
+    @ViewChild('textarea', {static: true}) textarea: ElementRef<HTMLTextAreaElement>;
 
     @Output() editorInputChange: EventEmitter<string> = new EventEmitter<string>();
     @Input() language: string;
     @Input() label: string;
+    @Input() initialValue: string;
 
     scrollTop = 0;
     scrollLeft = 0;
+
+    ngAfterViewInit(): void {
+        this.textarea.nativeElement.textContent = this.initialValue;
+        this.highlightContent.nativeElement.textContent = this.initialValue;
+        hljs.highlightElement(this.highlightContent.nativeElement);
+    }
 
     onTextareaInput(textarea: HTMLTextAreaElement, highlightContent: HTMLElement): void {
         let code = textarea.value;

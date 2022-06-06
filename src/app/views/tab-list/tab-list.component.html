@@ -1,8 +1,15 @@
 <ul>
-    <li *ngFor="let tab of tabs; let tabIndex = index">
-        <a routerLink="" (click)="onTabListItemClicked(tabIndex)">TestTab</a>
+    <li *ngFor="let category of jsonData">
+        <span>{{category.category}}</span>
+        <ul>
+            <li *ngFor="let child of category.children; let tabIndex = index">
+                <a routerLink="" (click)="onTabListItemClicked(child.id)">{{child.title}}</a>
+            </li>
+        </ul>
     </li>
 </ul>
-<div class="tab-content" *ngFor="let tab of tabs; let tabIndex = index">
-    <app-tab-content [tabChangeSubject]="tabChangeSubject" [tabIndex]="tabIndex" [class.hide]="tabIndex !== activeTab"></app-tab-content>
+<div class="tab-content">
+    <app-tab-content *ngFor="let child of children" [tabJSON]="child"
+                     [tabChangeSubject]="tabChangeSubject" [tabIndex]="child.id"
+                     [class.hide]="child.id !== activeTab"></app-tab-content>
 </div>

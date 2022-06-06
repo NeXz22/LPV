@@ -1,7 +1,13 @@
-<div>
-    <app-render [tabChangeSubject]="tabChangeSubject" [htmlCode]="htmlCodeSubject" [cssCode]="cssCodeSubject"></app-render>
+<div class="tab-meta-data">
+    <h1>{{tabJSON.title}}</h1>
+    <p>{{tabJSON.description}}</p>
 </div>
-<div>
-    <app-editor (editorInputChange)="htmlEditorInputChange($event)" label="HTML" language="html"></app-editor>
-    <app-editor (editorInputChange)="cssEditorInputChange($event)" label="CSS" language="css"></app-editor>
+<div class="tab-editor-render">
+    <div>
+        <app-render [tabChangeSubject]="tabChangeSubject" [htmlCode]="htmlCodeSubject" [cssCode]="cssCodeSubject"></app-render>
+    </div>
+    <div>
+        <app-editor [initialValue]="tabJSON.html" (editorInputChange)="htmlEditorInputChange($event)" label="HTML" language="html"></app-editor>
+        <app-editor [initialValue]="tabJSON.css" (editorInputChange)="cssEditorInputChange($event)" label="CSS" language="css"></app-editor>
+    </div>
 </div>

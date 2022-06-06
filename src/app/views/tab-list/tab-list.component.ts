@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Subject} from 'rxjs';
+import ShowCaseJSON from '../../../assets/data/showcase.json'
 
 @Component({
     selector: 'app-tab-list',
@@ -8,7 +9,8 @@ import {Subject} from 'rxjs';
 })
 export class TabListComponent implements OnInit {
 
-    tabs: any[] = [1, 2, 3];
+    jsonData: any[] = ShowCaseJSON;
+    children: any[];
     activeTab: number = 0;
     tabChangeSubject = new Subject();
 
@@ -16,6 +18,7 @@ export class TabListComponent implements OnInit {
     }
 
     ngOnInit(): void {
+        this.children = this.jsonData.flatMap(category => category.children);
     }
 
     onTabListItemClicked(tabIndex: number): void {

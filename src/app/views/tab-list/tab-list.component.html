@@ -1,9 +1,9 @@
 <ul>
     <li *ngFor="let category of jsonData">
-        <span>{{category.category}}</span>
-        <ul>
+        <a routerLink="" [class.activeCategory]="activeCategory === category.category">{{category.category}}</a>
+        <ul [class.hide]="activeCategory !== category.category">
             <li *ngFor="let child of category.children; let tabIndex = index">
-                <a routerLink="" (click)="onTabListItemClicked(child.id)">{{child.title}}</a>
+                <a routerLink="" [class.activeTab]="child.id === activeTab" (click)="onTabListItemClicked(child.id, category.category)">{{child.title}}</a>
             </li>
         </ul>
     </li>

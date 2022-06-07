@@ -3,10 +3,10 @@
     <p>{{tabJSON.description}}</p>
 </div>
 <div class="tab-editor-render">
-    <div>
+    <div class="tab-render-container">
         <app-render [tabChangeSubject]="tabChangeSubject" [htmlCode]="htmlCodeSubject" [cssCode]="cssCodeSubject"></app-render>
     </div>
-    <div>
+    <div class="tab-editors-container">
         <app-editor [initialValue]="tabJSON.html" (editorInputChange)="htmlEditorInputChange($event)" label="HTML" language="html"></app-editor>
         <app-editor [initialValue]="tabJSON.css" (editorInputChange)="cssEditorInputChange($event)" label="CSS" language="css"></app-editor>
     </div>

@@ -1,5 +1,6 @@
 * {
     box-sizing: border-box;
+    font-family: 'Ubuntu', sans-serif;
 }
 
 html, body {
@@ -10,6 +11,11 @@ html, body {
 
 pre code.hljs {
     padding: 0;
+    overflow-x: visible;
+}
+
+.hljs-tag, .hljs-name, .hljs-selector-tag, .hljs-attribute {
+    font-family: monospace;
 }
 
 .position-relative {

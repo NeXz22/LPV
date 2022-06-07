@@ -17,6 +17,11 @@ div.editor-container {
         caret-color: white;
         position: relative;
         resize: none;
+        box-shadow: $IframeBoxShadow;
+
+        &:focus-visible {
+            outline: none;
+        }
     }
 
     pre {
@@ -26,18 +31,23 @@ div.editor-container {
         top: 0;
         left: 0;
         overflow: auto;
+
+        code {
+            white-space: pre;
+        }
     }
 
     textarea, pre {
         margin: 0;
-        padding: 1rem;
         border: 0;
         width: 100%;
         height: $EditorHeight;
+        overflow: auto;
+        white-space: nowrap;
+        padding: $padding;
 
         &, code {
             @include editor-font-size;
-            overflow: auto;
         }
     }
 }

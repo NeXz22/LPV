@@ -1,6 +1,5 @@
 <label>{{label}}</label>
 <div class="editor-container editor-html">
-    <textarea spellcheck="false" [value]="initialValue" (input)="onTextareaInput(textarea, highlightContent)" (scroll)="onScroll(textarea)" #textarea></textarea>
-
-    <pre aria-hidden="true" [scrollTop]="scrollTop" [scrollLeft]="scrollLeft"><code [textContent]="initialValue" class="language-{{language}}" id="highlighting-content" #highlightContent></code></pre>
+    <textarea spellcheck="false" [value]="initialValue" (input)="onTextareaInput(textarea, highlightContent)" (scroll)="onScroll()" #textarea></textarea>
+    <pre aria-hidden="true" #highlight><code [textContent]="initialValue" class="language-{{language}}" id="highlighting-content" #highlightContent></code></pre>
 </div>

@@ -18,7 +18,7 @@ import {Subject, takeUntil} from 'rxjs';
 })
 export class RenderComponent implements OnInit, AfterViewInit, OnDestroy {
 
-    @ViewChild('iframe') iframe: ElementRef<HTMLIFrameElement>;
+    @ViewChild('iframe') iframeRef: ElementRef<HTMLIFrameElement>;
     @ViewChild('iframeContainer', {static: true}) iframeContainerRef: ElementRef<HTMLDivElement>;
 
     @Input() htmlCode: Subject<string>;
@@ -34,7 +34,7 @@ export class RenderComponent implements OnInit, AfterViewInit, OnDestroy {
     private latestHtmlCode = '';
     private latestCssCode = '';
     private resizeObserver: ResizeObserver;
-    private baseStyles = '* {box-sizing: border-box;} html, body {overflow: hidden; margin: 0; padding: 0; width: 100%;}';
+    private baseStyles = '* {box-sizing: border-box;} html, body {margin: 0; padding: 0; width: 100%;}';
 
     constructor(
         private zone: NgZone,
@@ -96,13 +96,13 @@ export class RenderComponent implements OnInit, AfterViewInit, OnDestroy {
     }
 
     private render(htmlCode, cssCode): void {
-        this.iframe.nativeElement.contentWindow.document.open();
-        this.iframe.nativeElement.contentWindow.document.write(htmlCode);
-        this.iframe.nativeElement.contentWindow.document.close();
+        this.iframeRef.nativeElement.contentWindow.document.open();
+        this.iframeRef.nativeElement.contentWindow.document.write(htmlCode);
+        this.iframeRef.nativeElement.contentWindow.document.close();
 
         const styles = document.createElement("style");
         styles.textContent = (this.baseStyles + cssCode);
-        this.iframe.nativeElement.contentDocument.head.appendChild(styles);
+        this.iframeRef.nativeElement.contentDocument.head.appendChild(styles);
     }
 
     ngOnDestroy(): void {

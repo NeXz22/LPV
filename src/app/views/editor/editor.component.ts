@@ -8,21 +8,19 @@ import hljs from 'highlight.js';
 })
 export class EditorComponent implements AfterViewInit {
 
-    @ViewChild('highlightContent', {static: true}) highlightContent: ElementRef<HTMLElement>;
-    @ViewChild('textarea', {static: true}) textarea: ElementRef<HTMLTextAreaElement>;
+    @ViewChild('highlight', {static: true}) highlightRef: ElementRef<HTMLPreElement>;
+    @ViewChild('highlightContent', {static: true}) highlightContentRef: ElementRef<HTMLElement>;
+    @ViewChild('textarea', {static: true}) textareaRef: ElementRef<HTMLTextAreaElement>;
 
     @Output() editorInputChange: EventEmitter<string> = new EventEmitter<string>();
     @Input() language: string;
     @Input() label: string;
     @Input() initialValue: string;
 
-    scrollTop = 0;
-    scrollLeft = 0;
-
     ngAfterViewInit(): void {
-        this.textarea.nativeElement.textContent = this.initialValue;
-        this.highlightContent.nativeElement.textContent = this.initialValue;
-        hljs.highlightElement(this.highlightContent.nativeElement);
+        this.textareaRef.nativeElement.textContent = this.initialValue;
+        this.highlightContentRef.nativeElement.textContent = this.initialValue;
+        hljs.highlightElement(this.highlightContentRef.nativeElement);
     }
 
     onTextareaInput(textarea: HTMLTextAreaElement, highlightContent: HTMLElement): void {
@@ -37,8 +35,10 @@ export class EditorComponent implements AfterViewInit {
         this.editorInputChange.next(code);
     }
 
-    onScroll(textarea: HTMLTextAreaElement): void {
-        this.scrollTop = textarea.scrollTop;
-        this.scrollLeft = textarea.scrollLeft;
+    onScroll(): void {
+        this.highlightRef.nativeElement.scrollTop = this.textareaRef.nativeElement.scrollTop;
+        this.highlightRef.nativeElement.scrollLeft = this.textareaRef.nativeElement.scrollLeft;
+        this.highlightContentRef.nativeElement.scrollTop = this.textareaRef.nativeElement.scrollTop;
+        this.highlightContentRef.nativeElement.scrollLeft = this.textareaRef.nativeElement.scrollLeft;
     }
 }

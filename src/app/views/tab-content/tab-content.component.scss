@@ -1,3 +1,5 @@
+@use "src/assets/css/variables" as *;
+
 :host {
     &.hide {
         display: none;
@@ -8,7 +10,11 @@
     width: 100%;
     display: flex;
 
-    div {
-        flex: 1 1 50%;
+    .tab-render-container {
+        flex: 1 1 67%;
+    }
+
+    .tab-editors-container {
+        flex: 1 1 33%;
     }
 }

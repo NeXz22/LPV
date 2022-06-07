@@ -1,18 +1,46 @@
+@use "src/assets/css/variables" as *;
+
 * {
     box-sizing: border-box;
+    font-family: 'Roboto Mono', monospace;
 }
 
 html, body {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    background-color: $backgroundColor;
 }
 
 pre code.hljs {
     padding: 0;
+    overflow-x: visible;
+}
+
+.hljs-tag, .hljs-name, .hljs-selector-tag, .hljs-attribute, .hljs-number {
+    font-family: monospace;
 }
 
 .position-relative {
     position: relative;
 }
 
+button {
+    padding: .5rem 1.25rem;
+    text-transform: uppercase;
+    background-color: darkorchid;
+    color: white;
+    border: 1px solid black;
+    box-shadow: $brutalBoxShadow;
+    cursor: pointer;
+
+    &:active {
+        transform: scale(0.9);
+        transition: .5s ease;
+    }
+
+    &:hover {
+        background-color: deeppink;
+        transition: background-color .5s ease;
+    }
+}

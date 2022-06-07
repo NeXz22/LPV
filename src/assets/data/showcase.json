@@ -1,27 +1,27 @@
 [
     {
-        "category": "General",
+        "category": "Display",
         "children": [
             {
                 "id": 1,
-                "title": "Test1",
-                "description": "Test1Description",
-                "html": "<h1>Test1</h1>",
-                "css": "h1 {\n\tcolor: deeppink;\n}"
+                "title": "display: inline",
+                "description": "Elemente werden auf einer horizontalen Zeile gerendert -> Kein Zeilenumbruch vor oder nach dem Element",
+                "html": "Lorem ipsum <span>dolor</span> sit amet.",
+                "css": "span {\n  margin: 1rem;\n  padding: 1rem;\n  border: 1px solid red;\n}\n"
             },
             {
                 "id": 2,
-                "title": "Test2",
+                "title": "display: block",
                 "description": "Test2Description",
-                "html": "<h1>Test2</h1>",
-                "css": "h1 {\n\tcolor: green;\n}"
+                "html": "Lorem ipsum <div>dolor</div> sit amet.",
+                "css": "div {\n  margin: 1rem;\n  padding: 1rem;\n  border: 1px solid red;\n}\n"
             },
             {
                 "id": 3,
-                "title": "Test3",
+                "title": "display: inline-block",
                 "description": "Test3Description",
-                "html": "<h1>Test3</h1>",
-                "css": "h1 {\n\tcolor: blue;\n}"
+                "html": "Lorem ipsum <span>dolor</span> sit amet.",
+                "css": "span {\n  display: inline-block;\n  margin: 1rem;\n  padding: 1rem;\n  border: 1px solid red;\n}"
             }
         ]
     },

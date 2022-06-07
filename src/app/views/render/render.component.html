@@ -1,7 +1,6 @@
 <div class="render-container">
-    <label>Render</label>
     <div #iframeContainer class="iframe-container">
-        <iframe #iframe height="{{iframeContainer.offsetHeight}}" width="{{iframeContainer.offsetWidth}}" (load)="onLoad()" srcdoc=""></iframe>
+        <iframe #iframe  (load)="onLoad()" srcdoc=""></iframe>
     </div>
     <span>{{iframeContainer.style.height || (initialIframeContainerHeight + 'px')}} / {{iframeContainer.style.width || (initialIframeContainerWidth + 'px')}}</span>
     <button (click)="onResetRenderSize()">Reset</button>

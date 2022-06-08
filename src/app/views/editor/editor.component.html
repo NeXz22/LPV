@@ -1,4 +1,4 @@
 <div class="editor-container editor-html">
-    <textarea spellcheck="false" [value]="initialValue" (input)="onTextareaInput(textarea, highlightContent)" (scroll)="onScroll()" #textarea></textarea>
+    <textarea spellcheck="false" [value]="initialValue" (input)="onTextareaInput()" (scroll)="onScroll()" (keydown)="onKeyDown($event)" #textarea></textarea>
     <pre aria-hidden="true" #highlight><code [textContent]="initialValue" class="language-{{language}}" id="highlighting-content" #highlightContent></code></pre>
 </div>

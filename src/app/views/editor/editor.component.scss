@@ -48,6 +48,7 @@ div.editor-container {
 
         &, code {
             @include editor-font-size;
+            tab-size: 2;
         }
     }
 }

@@ -23,15 +23,15 @@ export class EditorComponent implements AfterViewInit {
         hljs.highlightElement(this.highlightContentRef.nativeElement);
     }
 
-    onTextareaInput(textarea: HTMLTextAreaElement, highlightContent: HTMLElement): void {
-        let code = textarea.value;
+    onTextareaInput(): void {
+        let code = this.textareaRef.nativeElement.value;
 
         if (code[code.length - 1] === "\n") {
             code += " ";
         }
 
-        highlightContent.textContent = code;
-        hljs.highlightElement(highlightContent);
+        this.highlightContentRef.nativeElement.textContent = code;
+        hljs.highlightElement(this.highlightContentRef.nativeElement);
         this.editorInputChange.next(code);
     }
 
@@ -40,5 +40,24 @@ export class EditorComponent implements AfterViewInit {
         this.highlightRef.nativeElement.scrollLeft = this.textareaRef.nativeElement.scrollLeft;
         this.highlightContentRef.nativeElement.scrollTop = this.textareaRef.nativeElement.scrollTop;
         this.highlightContentRef.nativeElement.scrollLeft = this.textareaRef.nativeElement.scrollLeft;
+    }
+
+    onKeyDown(event: KeyboardEvent): void {
+        const textArea = this.textareaRef.nativeElement;
+        const textAreaValue = textArea.value;
+
+        if (event.key == "Tab") {
+            event.preventDefault();
+
+            let before_tab = textAreaValue.slice(0, textArea.selectionStart);
+            let after_tab = textAreaValue.slice(textArea.selectionEnd, textArea.value.length);
+            let cursor_pos = textArea.selectionEnd + 1;
+            textArea.value = before_tab + "\t" + after_tab;
+
+            textArea.selectionStart = cursor_pos;
+            textArea.selectionEnd = cursor_pos;
+
+            this.onTextareaInput();
+        }
     }
 }

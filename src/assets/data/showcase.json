@@ -7,21 +7,21 @@
                 "title": "display: inline",
                 "description": "Elemente werden auf einer horizontalen Zeile gerendert -> Kein Zeilenumbruch vor oder nach dem Element",
                 "html": "Lorem ipsum <span>dolor</span> sit amet.",
-                "css": "span {\n  margin: 1rem;\n  padding: 1rem;\n  border: 1px solid red;\n}\n"
+                "css": "span {\n\tmargin: 1rem;\n\tpadding: 1rem;\n\tborder: 1px solid red;\n}\n"
             },
             {
                 "id": 2,
                 "title": "display: block",
                 "description": "Test2Description",
                 "html": "Lorem ipsum <div>dolor</div> sit amet.",
-                "css": "div {\n  margin: 1rem;\n  padding: 1rem;\n  border: 1px solid red;\n}\n"
+                "css": "div {\n\tmargin: 1rem;\n\tpadding: 1rem;\n\tborder: 1px solid red;\n}\n"
             },
             {
                 "id": 3,
                 "title": "display: inline-block",
                 "description": "Test3Description",
                 "html": "Lorem ipsum <span>dolor</span> sit amet.",
-                "css": "span {\n  display: inline-block;\n  margin: 1rem;\n  padding: 1rem;\n  border: 1px solid red;\n}"
+                "css": "span {\n\tdisplay: inline-block;\n\tmargin: 1rem;\n\tpadding: 1rem;\n\tborder: 1px solid red;\n}"
             }
         ]
     },

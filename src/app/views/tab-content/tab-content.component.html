@@ -1,6 +1,6 @@
 <div class="tab-meta-data">
     <h2>{{tabJSON.title}}</h2>
-<!--    <p>{{tabJSON.description}}</p>-->
+    <p *ngIf="tabJSON.description.length">{{tabJSON.description}}</p>
 </div>
 <div class="tab-editor-render">
     <div class="tab-render-container">

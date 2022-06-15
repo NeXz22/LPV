@@ -1,53 +1,234 @@
 [
     {
-        "category": "Display",
+        "category": "Foundation",
         "children": [
             {
                 "id": 1,
-                "title": "display: inline",
-                "description": "Elemente werden auf einer horizontalen Zeile gerendert -> Kein Zeilenumbruch vor oder nach dem Element",
-                "html": "Lorem ipsum <span>dolor</span> sit amet.",
-                "css": "span {\n\tmargin: 1rem;\n\tpadding: 1rem;\n\tborder: 1px solid red;\n}\n"
+                "title": "color",
+                "description": "",
+                "html": "<h1>Hi, i am a pink headline</h1>",
+                "css": "h1 {\n\tcolor: deeppink;\n}\n"
             },
             {
                 "id": 2,
-                "title": "display: block",
-                "description": "Test2Description",
-                "html": "Lorem ipsum <div>dolor</div> sit amet.",
-                "css": "div {\n\tmargin: 1rem;\n\tpadding: 1rem;\n\tborder: 1px solid red;\n}\n"
+                "title": "font-size",
+                "description": "default: 1rem = 16px",
+                "html": "<h1>Hi, i am a huge headline</h1>",
+                "css": "h1 {\n\tfont-size: 5rem;\n}\n"
             },
             {
                 "id": 3,
-                "title": "display: inline-block",
-                "description": "Test3Description",
-                "html": "Lorem ipsum <span>dolor</span> sit amet.",
-                "css": "span {\n\tdisplay: inline-block;\n\tmargin: 1rem;\n\tpadding: 1rem;\n\tborder: 1px solid red;\n}"
+                "title": "font-family",
+                "description": "",
+                "html": "<h1>Hi, i am a funny headline</h1>",
+                "css": "h1 {\n\tfont-family: 'Comic Sans MS', 'Comic Sans', cursive;\n}"
+            },
+            {
+                "id": 4,
+                "title": "text-align",
+                "description": "",
+                "html": "<h1>Hi, i am a centered headline</h1>",
+                "css": "h1 {\n\ttext-align: center;\n}"
+            },
+            {
+                "id": 5,
+                "title": "combined selectors",
+                "description": "",
+                "html": "<h1>Hi, i am a headline</h1>\n<h2>Hi, i am another headline</h2>",
+                "css": "h1 {\n\ttext-align: center;\n}\nh2 {\n\ttext-align: right;\n}\nh1, h2 {\n\tcolor: deeppink;\n}"
+            },
+            {
+                "id": 6,
+                "title": "nested selectors",
+                "description": "",
+                "html": "<p>click <a>me</a>, please<p>",
+                "css": "p {\n\tcolor: blue;\n}\np a {\n\tcolor: deeppink;\n}"
+            },
+            {
+                "id": 7,
+                "title": "overriding selectors",
+                "description": "",
+                "html": "<p>click <a>me</a>, please<p>",
+                "css": "a {\n\tcolor: deeppink;\n}\na {\n\tcolor: chocolate;\n}"
+            },
+            {
+                "id": 8,
+                "title": "specificity",
+                "description": "",
+                "html": "<p>click <a>me</a>, please<p>",
+                "css": "p a {\n\tcolor: deeppink;\n}\na {\n\tcolor: chocolate;\n}"
             }
         ]
     },
     {
-        "category": "Flexbox",
+        "category": "Display",
         "children": [
             {
-                "id": 4,
-                "title": "Test4",
-                "description": "Test1Description",
-                "html": "<h1>Test1</h1>",
-                "css": "h1 {\n\tcolor: deeppink;\n}"
+                "id": 9,
+                "title": "display: inline",
+                "description": "",
+                "html": "Lorem ipsum <span>dolor</span> sit amet.",
+                "css": "span {\n\tmargin: 1rem;\n\tpadding: 1rem;\n\tborder: 1px solid red;\n}\n"
             },
             {
-                "id": 5,
-                "title": "Test5",
-                "description": "Test2Description",
-                "html": "<h1>Test2</h1>",
-                "css": "h1 {\n\tcolor: green;\n}"
+                "id": 10,
+                "title": "display: block",
+                "description": "",
+                "html": "Lorem ipsum <div>dolor</div> sit amet.",
+                "css": "div {\n\tmargin: 1rem;\n\tpadding: 1rem;\n\tborder: 1px solid red;\n}\n"
             },
             {
-                "id": 6,
-                "title": "Test6",
-                "description": "Test3Description",
-                "html": "<h1>Test3</h1>",
-                "css": "h1 {\n\tcolor: blue;\n}"
+                "id": 11,
+                "title": "display: inline-block",
+                "description": "",
+                "html": "Lorem ipsum <span>dolor</span> sit amet.",
+                "css": "span {\n\tdisplay: inline-block;\n\tmargin: 1rem;\n\tpadding: 1rem;\n\tborder: 1px solid red;\n}"
+            },
+            {
+                "id": 100,
+                "title": "position: relative",
+                "description": "",
+                "html": "<div class=\"verschieb-mich\">Content 1</div>\n<div>Content 2</div>",
+                "css": ".verschieb-mich {\n\tposition: relative;\n\ttop: 10px;\n\tleft: 50px;\n}\n\ndiv {\n\tmargin: 1rem;\n\tpadding: 1rem;\n\tbackground-color: darkorchid;\n\tcolor: white;\n}"
+            },
+            {
+                "id": 101,
+                "title": "position: absolute",
+                "description": "",
+                "html": "<div class=\"verschieb-mich\">Content 1</div>\n<div>Content 2</div>",
+                "css": ".verschieb-mich {\n\tposition: absolute;\n\ttop: 100px;\n\tleft: 200px;\n}\n\ndiv {\n\tmargin: 1rem;\n\tpadding: 1rem;\n\tbackground-color: darkorchid;\n\tcolor: white;\n}"
+            }
+        ]
+    },
+    {
+        "category": "Transform",
+        "children": [
+            {
+                "id": 22,
+                "title": "translate",
+                "description": "",
+                "html": "<div class=\"transform\">\n\tcontent\n</div>",
+                "css": ".transform {\n\ttransform: translate(100px, 30px);\n\theight: 200px;\n\twidth: 200px;\n\tbackground-color: darkorchid;\n\tcolor: white;\n\tline-height: 200px;\n\ttext-align: center;\n}"
+            },
+            {
+                "id": 23,
+                "title": "scale",
+                "description": "",
+                "html": "<div class=\"transform\">\n\tcontent\n</div>",
+                "css": ".transform {\n\ttransform: scale(.5);\n\theight: 200px;\n\twidth: 200px;\n\tbackground-color: darkorchid;\n\tcolor: white;\n\tline-height: 200px;\n\ttext-align: center;\n}"
+            },
+            {
+                "id": 24,
+                "title": "rotate",
+                "description": "",
+                "html": "<div class=\"transform\">\n\tcontent\n</div>",
+                "css": ".transform {\n\ttransform: rotate(45deg);\n\theight: 200px;\n\twidth: 200px;\n\tbackground-color: darkorchid;\n\tcolor: white;\n\tline-height: 200px;\n\ttext-align: center;\n}"
+            }
+        ]
+    },
+    {
+        "category": "Pseudo-Classes",
+        "children": [
+            {
+                "id": 25,
+                "title": "hover",
+                "description": "",
+                "html": "<div class=\"pseudo\">\n\tcontent\n</div>",
+                "css": ".pseudo:hover {\n\tbackground-color: green;\n}\n\n.pseudo{\n\theight: 200px;\n\twidth: 200px;\n\tbackground-color: darkorchid;\n\tcolor: white;\n\tline-height: 200px;\n\ttext-align: center;\n}"
+            },
+            {
+                "id": 26,
+                "title": "focus",
+                "description": "",
+                "html": "<input class=\"pseudo\">",
+                "css": ".pseudo:focus {\n\tbackground-color: darkorchid;\n\tcolor: white;\n}"
+            },
+            {
+                "id": 27,
+                "title": "nth-child",
+                "description": "number; odd; even;",
+                "html": "<div>content 1</div>\n<div>content 2</div>\n<div>content 3</div>",
+                "css": "div {\n\theight: 50px;\n\tbackground-color: darkorchid;\n\tcolor: white;\n}\n\ndiv:nth-child(1) {\n\tbackground-color: green;\n}"
+            }
+        ]
+    },
+    {
+        "category": "Flexbox (Container)",
+        "children": [
+            {
+                "id": 12,
+                "title": "no-flexbox",
+                "description": "",
+                "html": "<div class=\"flex-box\">\n\t<div>1</div>\t\n\t<div>2</div>\n\t<div>3</div>\n\t<div>4</div>\n\t<div>5</div>\n</div>",
+                "css": ".flex-box div {\n\theight: 200px;\n\twidth: 200px;\n\tborder: 1px solid white;\n\tbackground-color: darkorchid;\n\tcolor: white;\n\tfont-size: 26px;\n}"
+            },
+            {
+                "id": 13,
+                "title": "flexbox",
+                "description": "",
+                "html": "<div class=\"flex-box\">\n\t<div>1</div>\t\n\t<div>2</div>\n\t<div>3</div>\n\t<div>4</div>\n\t<div>5</div>\n</div>",
+                "css": ".flex-box {\n\tdisplay: flex;\n}\n\n.flex-box div {\n\theight: 200px;\n\twidth: 200px;\n\tborder: 1px solid white;\n\tbackground-color: darkorchid;\n\tcolor: white;\n\tfont-size: 26px;\n}"
+            },
+            {
+                "id": 14,
+                "title": "flex-direction",
+                "description": "row; row-reverse; column; column-reverse;",
+                "html": "<div class=\"flex-box\">\n\t<div>1</div>\t\n\t<div>2</div>\n\t<div>3</div>\n\t<div>4</div>\n\t<div>5</div>\n</div>",
+                "css": ".flex-box {\n\tdisplay: flex;\n\tflex-direction: row;\n}\n\n.flex-box div {\n\theight: 200px;\n\twidth: 200px;\n\tborder: 1px solid white;\n\tbackground-color: darkorchid;\n\tcolor: white;\n\tfont-size: 26px;\n}"
+            },
+            {
+                "id": 15,
+                "title": "flex-wrap",
+                "description": "nowrap; wrap; wrap-reverse;",
+                "html": "<div class=\"flex-box\">\n\t<div>1</div>\t\n\t<div>2</div>\n\t<div>3</div>\n\t<div>4</div>\n\t<div>5</div>\n</div>",
+                "css": ".flex-box {\n\tdisplay: flex;\n\tflex-wrap: nowrap;\n}\n\n.flex-box div {\n\theight: 200px;\n\twidth: 200px;\n\tborder: 1px solid white;\n\tbackground-color: darkorchid;\n\tcolor: white;\n\tfont-size: 26px;\n}"
+            },
+            {
+                "id": 16,
+                "title": "justify-content",
+                "description": "flex-start; flex-end; space-between; center; space-around;",
+                "html": "<div class=\"flex-box\">\n\t<div>1</div>\t\n\t<div>2</div>\n\t<div>3</div>\n\t<div>4</div>\n\t<div>5</div>\n</div>",
+                "css": ".flex-box {\n\tdisplay: flex;\n\tjustify-content: flex-start;\n}\n\n.flex-box div {\n\theight: 200px;\n\twidth: 200px;\n\tborder: 1px solid white;\n\tbackground-color: darkorchid;\n\tcolor: white;\n\tfont-size: 26px;\n}"
+            },
+            {
+                "id": 17,
+                "title": "align-items",
+                "description": "flex-start; flex-end; center; baseline; stretch;",
+                "html": "<div class=\"flex-box\">\n\t<div style=\"height: 100px\">1</div>\t\n\t<div style=\"height: 200px\">2</div>\n\t<div style=\"height: 300px\">3</div>\n\t<div style=\"height: 200px\">4</div>\n\t<div style=\"height: 100px\">5</div>\n</div>",
+                "css": ".flex-box {\n\tdisplay: flex;\n\talign-items: flex-start;\n}\n\n.flex-box div {\n\theight: 200px;\n\twidth: 200px;\n\tborder: 1px solid white;\n\tbackground-color: darkorchid;\n\tcolor: white;\n\tfont-size: 26px;\n}"
+            },
+            {
+                "id": 18,
+                "title": "align-content",
+                "description": "flex-start; flex-end; center; space-between; space-around; stretch;",
+                "html": "<div class=\"flex-box\">\n\t<div style=\"height: 100px\">1</div>\t\n\t<div style=\"height: 200px\">2</div>\n\t<div style=\"height: 300px\">3</div>\n\t<div style=\"height: 200px\">4</div>\n\t<div style=\"height: 100px\">5</div>\n</div>",
+                "css": ".flex-box {\n\tdisplay: flex;\n\tflex-wrap: wrap;\n\talign-content: flex-start;\n\theight: 600px;\n}\n\n.flex-box div {\n\theight: 200px;\n\twidth: 200px;\n\tborder: 1px solid white;\n\tbackground-color: darkorchid;\n\tcolor: white;\n\tfont-size: 26px;\n}"
+            }
+        ]
+    },
+    {
+        "category": "Flexbox (Item)",
+        "children": [
+            {
+                "id": 19,
+                "title": "align-self",
+                "description": "auto; flex-start; flex-end; center; baseline; stretch;",
+                "html": "<div class=\"flex-box\">\n\t<div>1</div>\t\n\t<div>2</div>\n\t<div class=\"special\">3</div>\n\t<div>4</div>\n\t<div>5</div>\n</div>",
+                "css": ".flex-box {\n\tdisplay: flex;\n\talign-items: center;\n\theight: 600px;\n}\n\n.flex-box div.special {\n\theight: 300px;\n\talign-self: auto;\n}\n\n.flex-box div {\n\theight: 200px;\n\twidth: 200px;\n\tborder: 1px solid white;\n\tbackground-color: darkorchid;\n\tcolor: white;\n\tfont-size: 26px;\n}"
+            },
+            {
+                "id": 20,
+                "title": "flex-grow",
+                "description": "",
+                "html": "<div class=\"flex-box\">\n\t<div>1</div>\t\n\t<div>2</div>\n\t<div class=\"special\">3</div>\n\t<div>4</div>\n\t<div>5</div>\n</div>",
+                "css": ".flex-box {\n\tdisplay: flex;\n\tflex-wrap: wrap;\n\talign-items: center;\n}\n\n.flex-box div.special {\n\tflex-grow: 1;\n}\n\n.flex-box div {\n\tflex-grow: 1;\n\theight: 200px;\n\tborder: 1px solid white;\n\tbackground-color: darkorchid;\n\tcolor: white;\n\tfont-size: 26px;\n}"
+            },
+            {
+                "id": 21,
+                "title": "flex-shrink",
+                "description": "",
+                "html": "<div class=\"flex-box\">\n\t<div>1</div>\t\n\t<div>2</div>\n\t<div class=\"special\">3</div>\n\t<div>4</div>\n\t<div>5</div>\n</div>",
+                "css": ".flex-box {\n\tdisplay: flex;\n}\n\n.flex-box div.special {\n\tflex-shrink: 1;\n}\n\n.flex-box div {\n\tflex-shrink: 0;\n\theight: 200px;\n\twidth: 200px;\n\tborder: 1px solid white;\n\tbackground-color: darkorchid;\n\tcolor: white;\n\tfont-size: 26px;\n}"
             }
         ]
     }

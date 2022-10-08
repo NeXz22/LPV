@@ -5,7 +5,7 @@
             {
                 "id": 1,
                 "title": "color",
-                "description": "",
+                "description": "rgb (+ #rgb), hsl, rgba, hsla, color-keywords",
                 "html": "<h1>Hi, i am a pink headline</h1>",
                 "css": "h1 {\n\tcolor: deeppink;\n}\n"
             },
@@ -25,10 +25,10 @@
             },
             {
                 "id": 4,
-                "title": "text-align",
-                "description": "",
-                "html": "<h1>Hi, i am a centered headline</h1>",
-                "css": "h1 {\n\ttext-align: center;\n}"
+                "title": "box-model",
+                "description": "box-shadow: <shift-right> <shift-down> <blur> <spread> <color (+ opacity)>",
+                "html": "<div>content</div>",
+                "css": "div {\n\tbackground-color: lightgrey;\n\tpadding: 1rem;\n\tmargin: 1rem;\n\tborder: 3px solid red;\n\toutline: 3px dashed green;\n\tbox-shadow: 5px 5px 15px 5px rgba(0, 0, 0, .5);\n}"
             },
             {
                 "id": 5,

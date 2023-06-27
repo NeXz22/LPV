@@ -13,8 +13,8 @@
                 "id": 2,
                 "title": "font-size",
                 "description": "default: 1rem = 16px",
-                "html": "<h1>Hi, i am a huge headline</h1>",
-                "css": "h1 {\n\tfont-size: 5rem;\n}\n"
+                "html": "<h1>Hi, i am a huge headline\n\t<span> with different</span>\n\t<span> font-sizes</span>\n</h1>",
+                "css": "h1 {\n\tfont-size: 5rem;\n}\n\nh1 span {\n\tfont-size: 2.5rem;\n}\n\nh1 span + span {\n\tfont-size: 2em;\n}"
             },
             {
                 "id": 3,
@@ -29,34 +29,123 @@
                 "description": "box-shadow: <shift-right> <shift-down> <blur> <spread> <color (+ opacity)>",
                 "html": "<div>content</div>",
                 "css": "div {\n\tbackground-color: lightgrey;\n\tpadding: 1rem;\n\tmargin: 1rem;\n\tborder: 3px solid red;\n\toutline: 3px dashed green;\n\tbox-shadow: 5px 5px 15px 5px rgba(0, 0, 0, .5);\n}"
-            },
+            }
+        ]
+    },
+    {
+        "category": "Selectors",
+        "children": [
             {
                 "id": 5,
-                "title": "combined selectors",
+                "title": "selector list",
                 "description": "",
                 "html": "<h1>Hi, i am a headline</h1>\n<h2>Hi, i am another headline</h2>",
                 "css": "h1 {\n\ttext-align: center;\n}\nh2 {\n\ttext-align: right;\n}\nh1, h2 {\n\tcolor: deeppink;\n}"
             },
             {
-                "id": 6,
-                "title": "nested selectors",
+                "id": 115,
+                "title": "class selector",
                 "description": "",
-                "html": "<p>click <a>me</a>, please<p>",
+                "html": "<h1 class=\"heading\">Hello, World!</h1>\n<p class=\"paragraph\">This is a paragraph.</p>\n<a class=\"link\" href=\"#\">Click me</a>",
+                "css": ".heading {\n\tcolor: blue;\n\tfont-size: 24px;\n}\n\n.paragraph {\n\tcolor: red;\n}\n\n.link {\n\ttext-decoration: none;\n\tcolor: green;\n}"
+            },
+            {
+                "id": 116,
+                "title": "id selector",
+                "description": "",
+                "html": "<h1 id=\"title\">Hello, World!</h1>\n<p id=\"description\">This is a paragraph.</p>\n<a id=\"link\" href=\"#\">Click me</a>",
+                "css": "#title {\n\tcolor: blue;\n\tfont-size: 24px;\n}\n\n#description {\n\tcolor: red;\n}\n\n#link {\n\ttext-decoration: none;\n\tcolor: green;\n}"
+            },
+            {
+                "id": 6,
+                "title": "descendant selectors",
+                "description": "",
+                "html": "<p>click <a>me</a>, please</p>",
                 "css": "p {\n\tcolor: blue;\n}\np a {\n\tcolor: deeppink;\n}"
+            },
+            {
+                "id": 111,
+                "title": "child selector",
+                "description": "selects nodes that are direct children of the first element",
+                "html": "<p>click <a>me</a>, please</p>",
+                "css": "p {\n\tcolor: blue;\n}\np > a {\n\tcolor: deeppink;\n}"
+            },
+            {
+                "id": 112,
+                "title": "general sibling selector",
+                "description": "",
+                "html": "<div>\n\t<h2>Parent Element</h2>\n\t<p>First paragraph</p>\n\t<p>Second paragraph</p>\n\t<span>Sibling Element 1</span>\n\t<span>Sibling Element 2</span>\n\t<p>Third paragraph</p>\n</div>",
+                "css": "p ~ span {\n\tcolor: red;\n\tfont-weight: bold;\n}"
+            },
+            {
+                "id": 113,
+                "title": "adjacent sibling selector",
+                "description": "",
+                "html": "<div>\n\t<h2>Parent Element</h2>\n\t<p>First paragraph</p>\n\t<span>Adjacent Sibling 1</span>\n\t<span>Adjacent Sibling 2</span>\n\t<p>Second paragraph</p>\n\t<span>Not Selected Sibling</span>\n</div>",
+                "css": "p + span {\n\tcolor: blue;\n\tfont-weight: bold;\n}"
+            },
+            {
+                "id": 114,
+                "title": "attribute selector",
+                "description": "",
+                "html": "<ul>\n\t<li class=\"item\" data-category=\"fruit\">Apple</li>\n\t<li class=\"item\" data-category=\"vegetable\">Carrot</li>\n\t<li class=\"item\" data-category=\"fruit\">Banana</li>\n\t<li class=\"item\" data-category=\"vegetable\">Broccoli</li>\n</ul>",
+                "css": "[data-category=\"fruit\"] {\n\tcolor: green;\n}\n\n[data-category=\"vegetable\"] {\n\tcolor: orange;\n}"
+            },
+            {
+                "id": 118,
+                "title": "attribute starts selector",
+                "description": "",
+                "html": "<ul>\n\t<li data-color=\"red\">Apple</li>\n\t<li data-color=\"blue\">Blueberry</li>\n\t<li data-color=\"green\">Kiwi</li>\n\t<li data-color=\"yellow\">Lemon</li>\n</ul>",
+                "css": "li[data-color^=\"b\"] {\n\tfont-weight: bold;\n}"
+            },
+            {
+                "id": 119,
+                "title": "attribute ends selector",
+                "description": "",
+                "html": "<ul>\n\t<li data-language=\"JavaScript\">JavaScript</li>\n\t<li data-language=\"Python\">Python</li>\n\t<li data-language=\"Ruby\">Ruby</li>\n\t<li data-language=\"Java\">Java</li>\n</ul>",
+                "css": "li[data-language$=\"t\"] {\n\tcolor: blue;\n}\n\nli[data-language$=\"a\"] {\n\tcolor: orange;\n}"
+            },
+            {
+                "id": 120,
+                "title": "attribute wildcard selector",
+                "description": "",
+                "html": "<ul>\n\t<li data-name=\"apple\">Apple</li>\n\t<li data-name=\"banana\">Banana</li>\n\t<li data-name=\"orange\">Orange</li>\n\t<li data-name=\"kiwi\">Kiwi</li>\n</ul>",
+                "css": "li[data-name*=\"a\"] {\n\tcolor: blue;\n}\n\nli[data-name*=\"i\"] {\n\tcolor: green;\n}"
+            },
+            {
+                "id": 117,
+                "title": "negation pseudo-class selector",
+                "description": "",
+                "html": "<ul>\n\t<li>Apple</li>\n\t<li class=\"highlight\">Banana</li>\n\t<li>Cherry</li>\n\t<li class=\"highlight\">Durian</li>\n\t<li>Fig</li>\n</ul>",
+                "css": "li:not(.highlight) {\n\tcolor: blue;\n}"
+            },
+            {
+                "id": 121,
+                "title": "empty selector",
+                "description": "",
+                "html": "<div>\n\t<p>This paragraph has content.</p>\n\t<p></p>\n</div>",
+                "css": "p:empty {\n\tbackground-color: lightgray;\n\theight: 3rem;\n}"
             },
             {
                 "id": 7,
                 "title": "overriding selectors",
                 "description": "",
-                "html": "<p>click <a>me</a>, please<p>",
+                "html": "<p>click <a>me</a>, please</p>",
                 "css": "a {\n\tcolor: deeppink;\n}\na {\n\tcolor: chocolate;\n}"
             },
             {
                 "id": 8,
                 "title": "specificity",
                 "description": "",
-                "html": "<p>click <a>me</a>, please<p>",
+                "html": "<p>click <a>me</a>, please</p>",
                 "css": "p a {\n\tcolor: deeppink;\n}\na {\n\tcolor: chocolate;\n}"
+            },
+            {
+                "id": 102,
+                "title": "display anything",
+                "description": "selectors work on any dom-element, including head",
+                "html": "",
+                "css": "head, head * {\n\tdisplay:block;\n}"
             }
         ]
     },

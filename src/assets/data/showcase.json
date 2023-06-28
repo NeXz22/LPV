@@ -74,14 +74,14 @@
                 "id": 112,
                 "title": "general sibling selector",
                 "description": "",
-                "html": "<div>\n\t<h2>Parent Element</h2>\n\t<p>First paragraph</p>\n\t<p>Second paragraph</p>\n\t<span>Sibling Element 1</span>\n\t<span>Sibling Element 2</span>\n\t<p>Third paragraph</p>\n</div>",
-                "css": "p ~ span {\n\tcolor: red;\n\tfont-weight: bold;\n}"
+                "html": "<div>\n\t<h2>Parent Element</h2>\n\t<p>First paragraph</p>\n\t<span>General Sibling 1</span>\n\t<span>General Sibling 2</span>\n\t<p>Second paragraph</p>\n\t<span>General Sibling 3</span>\n</div>",
+                "css": "p ~ span {\n\tcolor: blue;\n\tfont-weight: bold;\n}"
             },
             {
                 "id": 113,
                 "title": "adjacent sibling selector",
                 "description": "",
-                "html": "<div>\n\t<h2>Parent Element</h2>\n\t<p>First paragraph</p>\n\t<span>Adjacent Sibling 1</span>\n\t<span>Adjacent Sibling 2</span>\n\t<p>Second paragraph</p>\n\t<span>Not Selected Sibling</span>\n</div>",
+                "html": "<div>\n\t<h2>Parent Element</h2>\n\t<p>First paragraph</p>\n\t<span>Adjacent Sibling 1</span>\n\t<span>Not Selected Sibling</span>\n\t<p>Second paragraph</p>\n\t<span>Adjacent Sibling 2</span>\n</div>",
                 "css": "p + span {\n\tcolor: blue;\n\tfont-weight: bold;\n}"
             },
             {
@@ -125,6 +125,27 @@
                 "description": "",
                 "html": "<div>\n\t<p>This paragraph has content.</p>\n\t<p></p>\n</div>",
                 "css": "p:empty {\n\tbackground-color: lightgray;\n\theight: 3rem;\n}"
+            },
+            {
+                "id": 122,
+                "title": "is selector",
+                "description": "",
+                "html": "<ul>\n\t<li class=\"fruit\">Apple</li>\n\t<li class=\"vegetable\">Carrot</li>\n\t<li class=\"fruit\">Banana</li>\n\t<li class=\"vegetable\">Broccoli</li>\n</ul>",
+                "css": "/* li.fruit, li.vegetable, ... */\n\nli:is(.fruit, .vegetable) {\n\tcolor: green;\n\tfont-weight: bold;\n}"
+            },
+            {
+                "id": 123,
+                "title": "where selector",
+                "description": "functionally identical to the :is() psuedo selector; the specificity of :where() is always zero (0)",
+                "html": "<ul>\n\t<li class=\"fruit\">Apple</li>\n\t<li class=\"vegetable\">Carrot</li>\n\t<li class=\"fruit\">Banana</li>\n\t<li class=\"vegetable\">Broccoli</li>\n</ul>",
+                "css": "/* li.fruit, li.vegetable, ... */\n\nli:where(.fruit, .vegetable) {\n\tcolor: green;\n\tfont-weight: bold;\n}"
+            },
+            {
+                "id": 124,
+                "title": "has selector",
+                "description": "presents a way of selecting a parent element or a previous sibling element",
+                "html": "<div>\n\t<h2>Parent Element</h2>\n\t<p>First paragraph</p>\n\t<span>Not Selected Span 1</span>\n\t<span>Selected Span</span>\n\t<p>Second paragraph</p>\n\t<span>Not Selected Span 2</span>\n</div>",
+                "css": "span:has(+ p) {\n\tcolor: blue;\n\tfont-weight: bold;\n}"
             },
             {
                 "id": 7,
